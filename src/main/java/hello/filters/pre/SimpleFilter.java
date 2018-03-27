@@ -30,12 +30,16 @@ public class SimpleFilter extends ZuulFilter {
   @Override
   public Object run() {
     RequestContext ctx = RequestContext.getCurrentContext();
+
+    ctx.addZuulRequestHeader("s1", "TestSample");
+
+
     HttpServletRequest request = ctx.getRequest();
 
-    HttpSession session = request.getSession(true);
-      if (session.getAttribute("s1") == null) {
-          session.setAttribute("s1", "panara");
-      }
+//    HttpSession session = request.getSession(true);
+//      if (session.getAttribute("s1") == null) {
+//          session.setAttribute("s1", "panara");
+//      }
 
     log.info(String.format("%s request to %s", request.getMethod(), request.getRequestURL().toString()));
 
